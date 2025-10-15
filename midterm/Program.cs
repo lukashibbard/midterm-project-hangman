@@ -1,0 +1,131 @@
+﻿// See https://aka.ms/new-console-template for more information
+while (true)
+{
+    Random random = new Random();
+    int lettersguessed = 0;
+    int ig = 5;
+    int rannum = random.Next(1, 11);
+    Console.WriteLine("welcome to hangman if you would like to play please pick a catagory");
+    Console.WriteLine("1) people");
+    Console.WriteLine("2) places");
+    Console.WriteLine("3) things");
+    Console.Write("type here:");
+    string word = "";
+    string choice = Console.ReadLine() + "";
+    string[] people = new string[] { "ryanreynolds", "venom", "robertdowney", "kirito", "theteminator", "mrlawrance", "jesus", "aarondavison", "crisfarly", "tommorello", };
+    string[] places = new string[] { "starbucks", "mcdonalds", "walmart", "OTC", "arbys", "applestore", "samsung", "russia", "australia", "whitevan", };
+    string[] things = new string[] { "cup", "bag", "rock", "chickenstrip", "sign", "card", "apple", "computer", "moniter", "table", };
+    List<string> inguess = new List<string>() { };
+
+    switch (choice)
+    {
+        case "1":
+            word = people[rannum];
+            break;
+        case "2":
+            word = places[rannum];
+            break;
+        case "3":
+            word = things[rannum];
+            break;
+    }
+    string wordlgdash = "";
+    int wordlg = (word.Length);
+    switch (wordlg)
+    {
+        case 3:
+            wordlgdash = "---";
+            break;
+        case 4:
+            wordlgdash = "----";
+            break;
+        case 5:
+            wordlgdash = "-----";
+            break;
+        case 6:
+            wordlgdash = "------";
+            break;
+        case 7:
+            wordlgdash = "-------";
+            break;
+        case 8:
+            wordlgdash = "--------";
+            break;
+        case 9:
+            wordlgdash = "---------";
+            break;
+        case 10:
+            wordlgdash = "----------";
+            break;
+        case 11:
+            wordlgdash = "-----------";
+            break;
+        case 12:
+            wordlgdash = "------------";
+            break;
+    }
+    string wordlgdash2 = wordlgdash;
+    Console.WriteLine("i have made a choice from your selected catogory");
+    do
+    {
+        Console.WriteLine(wordlgdash2);
+        bool ol = true;
+        while (ol == true)
+        {
+            if (ig == 0)
+            {
+                break;
+            }
+            Console.WriteLine("incorrect guesses:");
+            foreach (string ingues in inguess)
+            {
+                Console.Write($"{ingues},");
+            }
+            Console.WriteLine($"you have {ig} incorrect guesses left");
+            Console.Write("enter your guess here: ");
+            string lg = Console.ReadLine() + "";
+            int lgint = lg.Length;
+            switch (lgint)
+            {
+                case 1:
+                    int index = word.IndexOf(lg);
+                    if (index >= 0)
+                    {
+                        wordlgdash2 = wordlgdash.Remove(index, 1);
+                        wordlgdash = wordlgdash2;
+                        wordlgdash2 = wordlgdash.Insert(index, lg);
+                        wordlgdash = wordlgdash2;
+                        Console.WriteLine($"{lg} is a letter");
+                        lettersguessed++;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"{lg} is not a letter");
+                        inguess.Insert(0, lg);
+                        ig--;
+                    }
+                    ol = false;
+                    break;
+
+                case > 1:
+                    Console.WriteLine("please type 1 letter");
+                    break;
+            }
+        }
+
+    } while (lettersguessed < wordlg);
+    if (lettersguessed == wordlg)
+    {
+        Console.WriteLine("you won yay!");
+    }
+    else
+    {
+        Console.WriteLine("you ran out of guesses oh noooo!");
+    }
+    Console.WriteLine("would you like to play again? y/n");
+    string playagain = Console.ReadLine() + "";
+    if (playagain == "n")
+    {
+        break;
+    }
+}
