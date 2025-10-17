@@ -1,10 +1,11 @@
-﻿// See https://aka.ms/new-console-template for more information
+// See https://aka.ms/new-console-template for more information
 while (true)
 {
+    bool wordguessed = false;
     Random random = new Random();
     int lettersguessed = 0;
     int ig = 5;
-    int rannum = random.Next(1, 11);
+    int rannum = random.Next(1, 10);
     Console.WriteLine("welcome to hangman if you would like to play please pick a catagory");
     Console.WriteLine("1) people");
     Console.WriteLine("2) places");
@@ -55,29 +56,22 @@ while (true)
         case 9:
             wordlgdash = "---------";
             break;
-        case 10:
-            wordlgdash = "----------";
-            break;
-        case 11:
-            wordlgdash = "-----------";
-            break;
-        case 12:
-            wordlgdash = "------------";
-            break;
     }
+//line 34-68 will make the dashes in the words by checking the length of the word
     string wordlgdash2 = wordlgdash;
     Console.WriteLine("i have made a choice from your selected catogory");
     do
     {
+        if (ig == 0)
+            {
+                break;
+            }
+//line 61-68 tell the user that it has been selected and and if they run out of guesses it will break the loop at the start of it
         Console.WriteLine(wordlgdash2);
         bool ol = true;
         while (ol == true)
         {
-            if (ig == 0)
-            {
-                break;
-            }
-            Console.WriteLine("incorrect guesses:");
+            Console.Write("incorrect guesses:");
             foreach (string ingues in inguess)
             {
                 Console.Write($"{ingues},");
@@ -86,6 +80,7 @@ while (true)
             Console.Write("enter your guess here: ");
             string lg = Console.ReadLine() + "";
             int lgint = lg.Length;
+//line 70-82 shows the user the incorrect guesses and takes the new guess
             switch (lgint)
             {
                 case 1:
@@ -98,6 +93,10 @@ while (true)
                         wordlgdash = wordlgdash2;
                         Console.WriteLine($"{lg} is a letter");
                         lettersguessed++;
+                        if (lettersguessed == wordlg)
+                        {
+                            wordguessed = true;
+                        }
                     }
                     else
                     {
@@ -113,8 +112,8 @@ while (true)
                     break;
             }
         }
-
-    } while (lettersguessed < wordlg);
+//line 84-14 check the letter in the word if its right it replaces the dash with it while if its false it will tell them its not a letter and subtract one from their incorrect guesses
+    } while (wordguessed == false);
     if (lettersguessed == wordlg)
     {
         Console.WriteLine("you won yay!");
@@ -129,5 +128,5 @@ while (true)
     {
         break;
     }
-
 }
+// the rest of the lines are used for the play again and end mechanic
