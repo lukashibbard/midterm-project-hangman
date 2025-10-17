@@ -12,11 +12,11 @@ while (true)
     Console.Write("type here:");
     string word = "";
     string choice = Console.ReadLine() + "";
-    string[] people = new string[] { "ryanreynolds", "venom", "robertdowney", "kirito", "theteminator", "mrlawrance", "jesus", "aarondavison", "crisfarly", "tommorello", };
-    string[] places = new string[] { "starbucks", "mcdonalds", "walmart", "OTC", "arbys", "applestore", "samsung", "russia", "australia", "whitevan", };
-    string[] things = new string[] { "cup", "bag", "rock", "chickenstrip", "sign", "card", "apple", "computer", "moniter", "table", };
+    string[] people = new string[] { "dale", "venom", "tom", "raien", "tim", "jon", "jerad", "aron", "cris", "tom", };
+    string[] places = new string[] { "starbuck", "mcdonalds", "gamestop", "OTC", "arbys", "lostvagus", "cali", "mo", "truck", "whitevan", };
+    string[] things = new string[] { "cup", "bag", "rock", "lamp", "sign", "card", "log", "computer", "moniter", "table", };
     List<string> inguess = new List<string>() { };
-
+//line 4-18 made a random for the line picker it made the three arrays and a list for the incorrect guesses and gets what catagory th user wants
     switch (choice)
     {
         case "1":
@@ -29,6 +29,7 @@ while (true)
             word = things[rannum];
             break;
     }
+//line 20-31 picks the random depending on what the users selects 
     string wordlgdash = "";
     int wordlg = (word.Length);
     switch (wordlg)
@@ -128,4 +129,5 @@ while (true)
     {
         break;
     }
+
 }
